@@ -26,10 +26,10 @@ module:{
             },{
                 loader: 'css-loader',
 				options: {
-filename: "imageSprite", //,//需要存放的雪碧图的文件名称CSS Sprites 
-padding: 2,//每张素材的间隙
-algorithm: 'binary-tree',//计算方法 性能最佳
-imgType: ['png', 'jpg', 'jpeg'],//能够打成雪碧图的素材类型 直接使用作为正则的匹配 防止出现对其他资源引用连接上带?
+                    filename: "imageSprite", //,//需要存放的雪碧图的文件名称CSS Sprites 
+                    padding: 2,//每张素材的间隙
+                    algorithm: 'binary-tree',//计算方法 性能最佳
+                    imgType: ['png', 'jpg', 'jpeg'],//能够打成雪碧图的素材类型 直接使用作为正则的匹配 防止出现对其他资源引用连接上带?
                 }
         	},{
                 loader: 'sass-loader'
