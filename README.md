@@ -25,7 +25,7 @@ module:{
                 loader:'css-loader',
             },{
                 loader: 'css-loader',
-				    options: {
+				options: {
                     filename: "imageSprite", //,//需要存放的雪碧图的文件名称CSS Sprites 
                     padding: 2,//每张素材的间隙
                     algorithm: 'binary-tree',//计算方法 性能最佳
@@ -40,8 +40,8 @@ module:{
 假设结构目录为
 | root |
 | ---- | src |
-| ---- | --- | images |
-| ---- | --- | images | a.png,b.jpg,c.jpg,d.png,e.jpeg |
+| ---- | --- | images    |
+| ---- | --- | images    | a.png,b.jpg,c.jpg,d.png,e.jpeg |
 | ---- | --- | index.css |
 
 我们需要在 index.css 中引用 images 中的图片
