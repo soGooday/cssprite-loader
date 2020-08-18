@@ -36,16 +36,9 @@ module:{
         }],
     }]  
 }
-```
-假设结构目录为
-| root |
-| ---- | src |
-| ---- | --- | images    |
-| ---- | --- | images    | a.png,b.jpg,c.jpg,d.png,e.jpeg |
-| ---- | --- | index.css |
+```  
 
 我们需要在 index.css 中引用 images 中的图片
-
 ```css
     .image1{
         width:100px,
