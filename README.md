@@ -3,7 +3,7 @@
 当前是一个简单的雪碧图的 loader.
 
 
-## Getting Started
+## 🤪Getting Started
 
 To begin, you'll need to install <code>cssprite-loader</code>:
 
@@ -11,12 +11,12 @@ To begin, you'll need to install <code>cssprite-loader</code>:
 npm install --save-dev cssprite-loader
 ```
 
-#### 合并实例
+#### 💁‍♂️合并实例
 ![合并实例](https://github.com/soGooday/test-cssprite-loader/blob/master/quoteImage/sp_3.png "合并实例")
 
 ## 使用方法
 
-#### loader 配置
+#### 🔨loader 配置
 ```js
 module:{
     rules:[{
@@ -31,7 +31,7 @@ module:{
 				options: {
                     filename: "cssprite", //需要存放的雪碧图的文件名称CSS Sprites
                     padding: 2,//每张素材的间隙
-                    algorithm: 'binary-tree',//计算方法 性能最佳
+                    algorithm: 'binary-tree',//计算方法 性能最佳 layout
                     imgType: ['png', 'jpg', 'jpeg'],//能够打成雪碧图的素材类型 直接使用作为正则的匹配
                     htmlFontSize:20,//html的font-size值是多少  用于rem的适配
                     imageRatio:2,//使用的是几倍图的素材
@@ -43,20 +43,20 @@ module:{
 }
 ``` 
 #### 建议！！  
-##### 我们建议在file-loader，或者是url-loader中导出的图片的素材为添加hash值，这样可以处理浏览器本次开发缓存的问题 
+##### 建议在file-loader，或者是url-loader中导出的图片的素材为添加hash值，这样可以处理浏览器本次开发缓存的问题 
 
-## layout 
+## 👀layout 
+top-down:       上-下
+left-right:     左-右
+diagonal:       对角线
+alt-diagonal:   对角线居中
+binary-tree:    居中  
 
-| top-down | left-right | diagonal | alt-diagonal | binary-tree |
-| --------------------------------------------------------------|
-|   上-下  |    左-右   |  对角线  |  对角线居中   |     居中    |
-  
+🚄More information can be found in the layout documentation:
+[layout](https://github.com/twolfson/layout "layout")
 
-More information can be found in the layout documentation:
 
-https://github.com/twolfson/layout
-
-## css中的使用
+## 🔨css中的使用
 ⚠️⚠️⚠️目前需要注意的是css要跟images在同级目录下。不可以越级。否则会报错找不到相关素材。（当前版本还在升级中。后续会处理掉这个问题）
 我们需要在 index.css 中引用 images 中的图片
 ```css
