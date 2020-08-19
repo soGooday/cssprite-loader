@@ -11,7 +11,7 @@ To begin, you'll need to install <code>cssprite-loader</code>:
 npm install --save-dev cssprite-loader
 ```
 
-#### 💁‍♂️合并实例
+#### ☃️合并实例
 ![合并实例](https://github.com/soGooday/test-cssprite-loader/blob/master/quoteImage/sp_3.png "合并实例")
 
 ## 使用方法
