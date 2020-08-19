@@ -1,7 +1,7 @@
-# 说明
+# 说明 
+🌕当前是一个简单的雪碧图的 loader.
 
-当前是一个简单的雪碧图的 loader.
-
+✨测试文档地址：https://github.com/soGooday/test-cssprite-loader 
 
 ## 🤪Getting Started
 
@@ -42,8 +42,9 @@ module:{
     }]  
 }
 ``` 
-#### 建议！！  
-##### 👀建议在file-loader，或者是url-loader中导出的图片的素材为添加hash值，这样可以处理浏览器本次开发缓存的问题 
+#### 💥建议！！  
+##### 👀建议在file-loader，或者是url-loader中导出的图片的素材为添加hash值，这样可以处理浏览器本次开发缓存的问题。
+##### 👀如果你并不打算折磨做，可以在处理全部或者部分阶段处理完毕后，添加上雪碧图的标志后。然后从新开启本地服务
 
 ## 🌖layout 
 top-down:       上-下
