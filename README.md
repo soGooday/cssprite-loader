@@ -47,11 +47,11 @@ module:{
 ##### 👀如果你并不打算折磨做，可以在处理全部或者部分阶段处理完毕后，添加上雪碧图的标志后。然后从新开启本地服务
 
 ## 🏳️‍🌈layout 
-top-down:       上-下
-left-right:     左-右
-diagonal:       对角线
-alt-diagonal:   对角线居中
-binary-tree:    居中  
+🤷top-down:       上-下
+🤷🏻left-right:     左-右
+🤷🏼diagonal:       对角线
+🤷🏽alt-diagonal:   对角线居中
+🤷🏾binary-tree:    居中  
 
 🚄More information can be found in the layout documentation:
 [layout](https://github.com/twolfson/layout)➡️https://github.com/twolfson/layout
