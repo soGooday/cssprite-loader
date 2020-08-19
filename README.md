@@ -31,7 +31,7 @@ module:{
 				options: {
                     filename: "cssprite", //需要存放的雪碧图的文件名称CSS Sprites
                     padding: 2,//每张素材的间隙
-                    algorithm: 'binary-tree',//计算方法 性能最佳 layout
+                    algorithm: 'binary-tree',//打成雪碧图的算法 🏳️‍🌈layout
                     imgType: ['png', 'jpg', 'jpeg'],//能够打成雪碧图的素材类型 直接使用作为正则的匹配
                     htmlFontSize:20,//html的font-size值是多少  用于rem的适配
                     imageRatio:2,//使用的是几倍图的素材
@@ -46,7 +46,7 @@ module:{
 ##### 👀建议在file-loader，或者是url-loader中导出的图片的素材为添加hash值，这样可以处理浏览器本次开发缓存的问题。
 ##### 👀如果你并不打算折磨做，可以在处理全部或者部分阶段处理完毕后，添加上雪碧图的标志后。然后从新开启本地服务
 
-## 🌖layout 
+## 🏳️‍🌈layout 
 top-down:       上-下
 left-right:     左-右
 diagonal:       对角线
