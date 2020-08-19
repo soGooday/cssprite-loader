@@ -1,6 +1,6 @@
 {
   "name": "cssprite-loader",
-  "version": "1.0.0",
+  "version": "1.0.3",
   "description": "是一个简单配置的雪碧图loader",
   "main": "index.js",
   "scripts": {
@@ -18,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/soGooday/cssprite-loader/issues"
   },
-  "homepage": "https://github.com/soGooday/cssprite-loader#readme"
+  "homepage": "https://github.com/soGooday/cssprite-loader#readme",
+  "devDependencies": { 
+    "spritesmith": "^3.4.0"
+  }
 }
