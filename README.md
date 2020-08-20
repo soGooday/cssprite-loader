@@ -11,6 +11,12 @@ To begin, you'll need to install <code>cssprite-loader</code>:
 npm install --save-dev cssprite-loader
 ```
 
+此loader依赖于spritesmith，所以记得安装
+```shell
+npm install --save-dev spritesmith
+```
+
+
 #### ☃️合并实例
 ![合并实例](https://github.com/soGooday/test-cssprite-loader/blob/master/quoteImage/sp_3.png "合并实例")
 
