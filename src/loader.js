@@ -3,20 +3,22 @@ const loaderUtils = require('loader-utils');
 const fs = require('fs');
 const path = require('path');
 //默认的配置项
-let config={
+let config = {
     filename: "cssprite", //需要存放的雪碧图的文件名称CSS Sprites
     padding: 2,//每张素材的间隙
     algorithm: 'binary-tree',//计算方法 性能最佳
     imgType: ['png', 'jpg', 'jpeg'],//能够打成雪碧图的素材类型 直接使用作为正则的匹配
-    htmlFontSize:20,//html的font-size值是多少  用于rem的适配
-    imageRatio:2,//使用的是几倍图的素材
+    htmlFontSize: 20,//html的font-size值是多少  用于rem的适配
+    imageRatio: 2,//使用的是几倍图的素材
 }
-module.exports = function (source) {   
+module.exports = function (source) {
     const callback = this.async();
-    const options =Object.assign(config,loaderUtils.getOptions(this));//得到配置参数 
-    let imgType = `(${options.imgType.join("|")})` 
+    const options = Object.assign(config, loaderUtils.getOptions(this));//得到配置参数 
+    // let imgType = `(${options.imgType.join("|")})` 
     //正则的意思是取到url(parameter)  parameter= .imgType?\w  .后面必须有图片类型中的一个且结尾必须是一个?结尾并在?后面有文本 多个?是不符合结果的
-    let imgRegExp = new RegExp(`url\\(\\S*?(?<=\.)(?:${imgType})(?:\\?\\S+)\\)`, 'gi') 
+    // let imgRegExp = new RegExp(`url\\(\\S*?(?<=\.)(?:${imgType})(?:\\?\\S+)\\)`, 'gi') 
+    let imgType = `(?:${options.imgType.join("|")})`
+    let imgRegExp = new RegExp(`url\\(\\S+?\\.${imgType}\\?(?:\\w+)\\)`, 'gi')
     let imgArray = source.match(imgRegExp) || []; //取到所有的url(....)的string 没用就给空数组  
     // let imgArray = source.match(/url\((.*?)\)/g) || []; //取到所有的url(....)的string 没用就给空数组 
     options.pageDirPath = this.context;
@@ -26,7 +28,7 @@ module.exports = function (source) {
     let imgMap = getNeedImaheMap(imgURLArrey);//雪碧图的名字作为key valuse= array(image of path)  
     //检测需要进行雪碧图的处理
     if (imgMap.size > 0) {
-        circulation(imgMap, source, options, (_source) => { 
+        circulation(imgMap, source, options, (_source) => {
             callback(null, _source)
         })
     } else {
@@ -109,7 +111,7 @@ function buildSprites(imgURLArrey, imgSpriteName, source, options) {
                 // console.log('当前的路径：__dirname::',result)
                 // console.log('当前生成的路径是',path.join(process.cwd(),`dist/img/${imgSpriteName}.png`))
                 // console.log('result::',result.coordinates) 
-                let imgSpriteNamekey = getSpName(imgSpriteName);
+                // let imgSpriteNamekey = getSpName(imgSpriteName);
                 // console.log('---------------1----------------:',imgSpriteNamekey)
                 // delFile(outputPathFilePath,new RegExp(`${imgSpriteNamekey}`,'g'),()=>{
                 // console.log('---------------1----------------')
@@ -145,8 +147,8 @@ function changeCss(source, SpriteImageInfo, imgSpriteName, options, pageDirPath)
             let ishavaBZ = /background\-size:.*?([;|}])/gis;//用于检测background-size的存在 
             let ishavsBG = /background\-image/g;//得到 background-image 改为background
             // let ishavsBR = /background\-repeat:.*?([;|}])/gis;
-            let { filename , htmlFontSize , imageRatio} = options;
-            let imageRatioNum = htmlFontSize*imageRatio;//计算出来最终的数值是多少 用于rem转化
+            let { filename, htmlFontSize, imageRatio } = options;
+            let imageRatioNum = htmlFontSize * imageRatio;//计算出来最终的数值是多少 用于rem转化
             //当前的itme是{}中的内容 是有rul的链接的 证明是使用了图片的素材了
             // if(isHaveUrl.test(itme)){
             let getUrlContent = /\((\S*?)\)/g;//得到url中的内容 

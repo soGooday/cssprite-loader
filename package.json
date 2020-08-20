@@ -1,6 +1,6 @@
 {
   "name": "cssprite-loader",
-  "version": "1.0.3",
+  "version": "1.0.5",
   "description": "是一个简单配置的雪碧图loader",
   "main": "index.js",
   "scripts": {
