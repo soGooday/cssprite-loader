@@ -10,6 +10,7 @@ let config = {
     imgType: ['png', 'jpg', 'jpeg'],//能够打成雪碧图的素材类型 直接使用作为正则的匹配
     htmlFontSize: 20,//html的font-size值是多少  用于rem的适配
     imageRatio: 2,//使用的是几倍图的素材
+    defaultType:'png',//当雪碧图中有2个以上不同类型的图片类型。默认打包后的雪碧图的类型,为了兼容不同类型打包成为同一张雪碧图
 }
 module.exports = function (source) {
     const callback = this.async();
@@ -253,10 +254,27 @@ function getSpName(SpName) {
  * @param {object} options 用户的loader配置项
  */
 function getSpType(SpName,options) {
-    let path = Object.keys(SpName)[0]; 
-    let info = path.match(new RegExp(`(${options.imgType.join("|")})`));
-    let spType = info[0] 
-    return spType
+    //将被打打成雪碧图的图片数组使用换行分开 为了正确的抓取到 [.图片类型] 
+    let path = Object.keys(SpName).join('\n');
+    //获取图片的类型有
+    let imgTypeArray = path.match(/(.\w+$)/gmi); 
+    //将获取的图片的类型重
+    let imgSet = new Set(imgTypeArray);
+    //只有一种图片的类型 或者 有多种图片的类型
+    let type = imgSet.size === 1 ? imgTypeArray[0] : options.defaultType;
+    // console.log("检测出现额路径:\n",path);
+    // console.log("类型:\n",imgTypeArray); 
+    // console.log("类型:\n",imgSet); 
+    // console.log("最终得到的类型是:",type)
+    return type
+}
+/**
+ * 取到拥有几种素材的后缀
+ * @param {*} path 
+ */
+function getImageType(path){
+
+    return 
 }
 /**
  * 删除同样的雪碧图的素材--不在使用此方式 使用hash值进行处理
