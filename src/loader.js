@@ -96,7 +96,7 @@ function getimgMap(imgMap, spKey, imgPath) {
 function buildSprites(imgURLArrey, imgSpriteName, source, options) {
     let { pageDirPath, filename } = options;
     let outputPathFilePath = path.join(pageDirPath, filename);//生成的文件雪碧图路径
-    console.log('imgURLArrey:', imgURLArrey)
+    // console.log('imgURLArrey:\n', imgURLArrey,'\npath:',outputPathFilePath)
     return new Promise((resolve, reject) => {
         Spritesmith.run({
             src: imgURLArrey,
@@ -111,12 +111,14 @@ function buildSprites(imgURLArrey, imgSpriteName, source, options) {
                 // console.log('当前的路径：__dirname::',result)
                 // console.log('当前生成的路径是',path.join(process.cwd(),`dist/img/${imgSpriteName}.png`))
                 // console.log('result::',result.coordinates) 
-                // let imgSpriteNamekey = getSpName(imgSpriteName);
+                var imgSpriteType= getSpType(result.coordinates,options);
+                // var imgSpriteType = 'jpg'
+                console.log(`素材:${imgSpriteName}被打包成为${imgSpriteType}类型`)
                 // console.log('---------------1----------------:',imgSpriteNamekey)
                 // delFile(outputPathFilePath,new RegExp(`${imgSpriteNamekey}`,'g'),()=>{
                 // console.log('---------------1----------------')
-                fs.writeFile(path.join(outputPathFilePath, `/${imgSpriteName}.png`), result.image, function (err, info) {
-                    let _source = changeCss(source, result, imgSpriteName, options, pageDirPath);
+                fs.writeFile(path.join(outputPathFilePath, `/${imgSpriteName}.${imgSpriteType}`), result.image, function (err, info) {
+                    let _source = changeCss(source, result, imgSpriteName, options, pageDirPath,imgSpriteType);
                     resolve(_source);
                 });
                 // });  
@@ -131,8 +133,9 @@ function buildSprites(imgURLArrey, imgSpriteName, source, options) {
  * @param {string} imgSpriteName 打包后的雪碧图的信息
  * @param {object} options 关闭雪碧图的相关参数
  * @param {string } pageDirPath 雪碧图被打包的路径文件夹
+ * @param {string } imgSpriteType 雪碧图的被打包之后的类型
  */
-function changeCss(source, SpriteImageInfo, imgSpriteName, options, pageDirPath) {
+function changeCss(source, SpriteImageInfo, imgSpriteName, options, pageDirPath,imgSpriteType) {
     // console.log('--------------------')
     let regExp2 = /\{(.*?)\}/gs; //用于取到{}中的内容
     let imgSpriteNamekey = getSpName(imgSpriteName);
@@ -161,7 +164,7 @@ function changeCss(source, SpriteImageInfo, imgSpriteName, options, pageDirPath)
                 let info = SpriteImageInfo.coordinates[p]; //从对象中得到相应的信息 {D:\webpack\webpack-scripes\src\image\Gold01@2x.png:{ x: 0, y: 0, width: 321, height: 83 },...}
                 // console.log(SpriteImageInfo.coordinates,'\n key:',p,'\n itme:',itme,'\n pageDirPath:',pageDirPath)
                 // let string = `(./${filename}/${imgSpriteName}.png); \r\n  background-positon:${info.x/40}rem -${info.y/40}rem` 
-                let string = `(./${filename}/${imgSpriteName}.png) -${info.x / imageRatioNum}rem -${info.y / imageRatioNum}rem;  background-repeat: no-repeat;`
+                let string = `(./${filename}/${imgSpriteName}.${imgSpriteType}) -${info.x / imageRatioNum}rem -${info.y / imageRatioNum}rem;  background-repeat: no-repeat;`
                 return string;//所以返回的格式应该是 (image/Gold01@2x.png) 
                 // return string
             })
@@ -244,7 +247,17 @@ function mapToArray(imgMap) {
 function getSpName(SpName) {
     return SpName = SpName.split('.')[0]
 }
-
+/**
+ * 取到当前的图片的类型 -目的要根据被打包的图片的类型。生成相应的雪碧图
+ * @param {object} imageInfo 打成雪碧图之后的图片信息集合
+ * @param {object} options 用户的loader配置项
+ */
+function getSpType(SpName,options) {
+    let path = Object.keys(SpName)[0]; 
+    let info = path.match(new RegExp(`(${options.imgType.join("|")})`));
+    let spType = info[0] 
+    return spType
+}
 /**
  * 删除同样的雪碧图的素材--不在使用此方式 使用hash值进行处理
  * @param {*} path 必传参数可以是文件夹可以是文件
