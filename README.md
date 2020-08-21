@@ -18,7 +18,10 @@ npm install --save-dev spritesmith
 
 
 #### ☃️合并实例
-![合并实例](https://github.com/soGooday/test-cssprite-loader/blob/master/quoteImage/sp_3.png "合并实例")
+##### png类型
+![png类型](https://github.com/soGooday/test-cssprite-loader/blob/master/quoteImage/sp_3.png "png类型")
+##### jpg类型
+![jpg类型](https://github.com/soGooday/test-cssprite-loader/blob/master/quoteImage/sp_4.png "jpg类型")
 
 ## 使用方法
 
@@ -43,7 +46,7 @@ module:{
                     imageRatio:2,//使用的是几倍图的素材
                 }
         	},{
-                loader: 'sass-loader'
+                loader: 'sass-loader',//泛指css预编译器 可有可无
         }],
     }]  
 }
