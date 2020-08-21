@@ -33,7 +33,7 @@ module:{
             },{
                 loader:'css-loader',
             },{
-                loader: 'cssprite-loader',
+                loader: 'cssprite-loader',//放在要比css-loader先一步执行的位置
 				options: {
                     filename: "cssprite", //需要存放的雪碧图的文件名称CSS Sprites
                     padding: 2,//每张素材的间隙
